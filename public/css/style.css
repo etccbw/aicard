@@ -1,0 +1,20 @@
+@charset "utf-8";
+
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, ul, ol, li, dl, dd, input, button, textarea, fieldset, legend, figure, menu, th, td, pre{margin:0;padding:0;}
+body{font-size: 12px;font-family: "Arial", "Microsoft YaHei";color: #666;}
+
+.main{overflow: hidden;}
+.main .container{position: relative;margin-bottom: 50px;opacity: 0;}
+.main .container:first-child{opacity: 1;}
+.main h2{width: 372px;margin-bottom: 10px;font-weight: bold;font-size: 18px;color: #333;}
+.main p{width: 372px;line-height: 24px;margin-bottom: 5px;font-size: 14px;}
+.main .box{width: 372px;overflow: hidden;}
+.main .banner{float: left;width: 372px;height: 348px;margin-right: 10px;}
+.main .code{float: left;width: calc(100% - 970px);}
+.main pre{padding: 2px;}
+.main pre .hljs{font: 14px/1.4 "Consolas";}
+@media (max-width: 1580px){.main .code{width: 372px;margin-top: 5px;}}
+.next,.prev{height:40px !important;}
+.tb-arrow a.prev {
+    left: 13px !important;
+}

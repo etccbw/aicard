@@ -1,0 +1,93 @@
+$(function() {
+
+
+    autoLeftNav();
+    $(window).resize(function() {
+        autoLeftNav();
+        console.log($(window).width())
+    });
+
+    //    if(storageLoad('SelcetColor')){
+
+    //     }else{
+    //       storageSave(saveSelectColor);
+    //     }
+})
+
+
+// 页面数据
+
+
+// 风格切换
+
+$('.tpl-skiner-toggle').on('click', function() {
+    $('.tpl-skiner').toggleClass('active');
+})
+
+$('.tpl-skiner-content-bar').find('span').on('click', function() {
+    $('body').attr('class', $(this).attr('data-color'))
+    saveSelectColor.Color = $(this).attr('data-color');
+    // 保存选择项
+    storageSave(saveSelectColor);
+
+})
+
+
+
+
+// 侧边菜单开关
+
+
+function autoLeftNav() {
+
+
+
+    $('.tpl-header-switch-button').on('click', function() {
+        if ($('.left-sidebar').is('.active')) {
+            if ($(window).width() > 1024) {
+                $('.tpl-content-wrapper').removeClass('active');
+            }
+            $('.left-sidebar').removeClass('active');
+        } else {
+
+            $('.left-sidebar').addClass('active');
+            if ($(window).width() > 1024) {
+                $('.tpl-content-wrapper').addClass('active');
+            }
+        }
+    })
+
+    if ($(window).width() < 1024) {
+        $('.left-sidebar').addClass('active');
+    } else {
+        $('.left-sidebar').removeClass('active');
+    }
+}
+
+
+// 侧边菜单
+$('.sidebar-nav-sub-title').on('click', function() {
+    $(this).siblings('.sidebar-nav-sub').slideToggle(80)
+        .end()
+        .find('.sidebar-nav-sub-ico').toggleClass('sidebar-nav-sub-ico-rotate');
+})
+//切换店铺
+$('.swithstore').on('click', function(e){
+    e.preventDefault();
+    self = $(this);
+    $.ajax({
+        url:self.attr('href'),
+        data:{shop_id:self.attr('data-id')},
+        type:'post',
+        dateType:'json',
+        error:function(i,e,n){alert(n)},
+        success:function(res){
+            msg(res.msg);
+            setTimeout('$(".msg").hide();location.reload();',2000);
+        },
+    })
+})
+function msg(msg){
+    $('.msg').html('<span>'+msg+'</span>').show();
+    setTimeout("$('.msg').hide()",2000);
+}
